@@ -44,8 +44,11 @@ app.get('/api', function api_index(req, res) {
     base_url: "url here", // CHANGE ME
     endpoints: [
       {method: "GET", path: "/api", description: "Describes all available endpoints"},
-      {method: "GET", path: "/api/profile", description: "Data about me"}, // CHANGE ME
-      {method: "POST", path: "/api/sandwiches", description: "E.g. Create a new sandwich, which is a thing I love"} // CHANGE ME
+      {method: "GET", path: "/api/profile", description: "Data about me"},
+      {method: "GET", path: "/api/sandwiches", description: "Get ALL the sammiches"},
+      {method: "POST", path: "/api/sandwiches", description: "Create a new sammich"},
+      {method: "PUT", path: "/api/sandwiches", description: "Update a sammich"},
+      {method: "DELETE", path: "/api/sandwiches", description: "Delete a sammich :("}
     ]
   })
 });
