@@ -6,7 +6,7 @@ var SandwichSchema = new Schema({
   bread: String,
   protein: String,
   condiment: String,
-  length: Number
+  length: String
 });
 
 var Sandwich = mongoose.model('Sandwich', SandwichSchema);

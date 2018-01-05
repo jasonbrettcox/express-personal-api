@@ -59,8 +59,24 @@ app.get('/api/profile', function (req, res){
   });
 });
 
+//get all sandwiches
+app.get('/api/sandwich', function (req, res){
+  db.Sandwich.find(function(err, sandwich){
+    res.json(sandwich);
+    });
+  });
+
+  //get one sandwich by id
+  app.get('/api/sandwich/:id', function (req, res){
+    db.Sandwich.findById(req.params.id, function(err, sandwich){
+  if (err) {return console.log("you suck", + err)}
+      res.json(sandwich);
+    });      
+  });
+  
+
 // post route
-app.post('/api/sandwiches', function (req, res){
+app.post('/api/sandwich', function (req, res){
   var newSandwich = new db.Sandwich({
     description: req.body.description,
     bread: req.body.bread,
@@ -77,8 +93,16 @@ app.post('/api/sandwiches', function (req, res){
   });
 });
 //update route
-app.put('/api/sandwiches/:id', function (req, res){
-  db.sandwiches.findOneAndUpdate({_id: req.params.id}, {$set: {description: req.body.description, bread: req.params.bread}}, {new: true}, function(err, sandwich){
+app.put('/api/sandwich/:id', function (req, res){
+  db.Sandwich.findOneAndUpdate({_id: req.params.id}, {$set: {description: req.body.description, bread: req.body.bread, protein: req.body.protein, condiment: req.body.condiment, length: req.body.length}}, {new: true}, function(err, sandwich){
+if (err) {return console.log("you suck", + err)}
+    res.json(sandwich);
+  });      
+});
+
+//delete route
+app.delete('/api/sandwich/:id', function (req, res){
+  db.Sandwich.remove({_id: req.params.id}, function (err, sandwich) {
 if (err) {return console.log("you suck", + err)}
     res.json(sandwich);
   });      
