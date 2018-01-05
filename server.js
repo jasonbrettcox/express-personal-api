@@ -40,8 +40,8 @@ app.get('/api', function api_index(req, res) {
   res.json({
     woops_i_has_forgot_to_document_all_my_endpoints: false, // CHANGE ME ;)
     message: "Here's the dirt",
-    documentation_url: "readme here", // CHANGE ME
-    base_url: "url here", // CHANGE ME
+    documentation_url: "https://github.com/jasonbrettcox/express-personal-api/blob/master/README.md", // CHANGE ME
+    base_url: "https://glacial-sierra-13227.herokuapp.com", // CHANGE ME
     endpoints: [
       {method: "GET", path: "/api", description: "Describes all available endpoints"},
       {method: "GET", path: "/api/profile", description: "Data about me"},
