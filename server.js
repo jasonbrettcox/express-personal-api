@@ -39,7 +39,7 @@ app.get('/api', function api_index(req, res) {
   // TODO: Document all your api endpoints below
   res.json({
     woops_i_has_forgot_to_document_all_my_endpoints: true, // CHANGE ME ;)
-    message: "Welcome to my personal api! Here's what you need to know!",
+    message: "Here's the dirt",
     documentation_url: "https://github.com/example-username/express_self_api/README.md", // CHANGE ME
     base_url: "http://YOUR-APP-NAME.herokuapp.com", // CHANGE ME
     endpoints: [
@@ -49,6 +49,15 @@ app.get('/api', function api_index(req, res) {
     ]
   })
 });
+app.get('/api/profile', function (req, res){
+  [{
+    name: 'JSON COX',
+    github_link: "https://github.com/jasonbrettcox",
+    github_profile_image: "https://avatars0.githubusercontent.com/u/33739192?s=460&v=4",
+    current_city: "Mile High",
+    pets: [{name: "Betty", type: " Deceased Cat", breed: "Orange Tabby"}, {name: "Churro", type: "Dog", breed: "Pit Bull Terrier"}, {name: "Lord Frederick of Denverburg", type: "Dog", breed: "Dachshund"}]`
+  }]
+})
 
 /**********
  * SERVER *
