@@ -3,10 +3,10 @@ var mongoose = require('mongoose'),
 
 var SandwichSchema = new Schema({
   description: String,
-  Bread: String,
-  Protein: String,
-  Condiment: String,
-  Length: Number
+  bread: String,
+  protein: String,
+  condiment: String,
+  length: Number
 });
 
 var Sandwich = mongoose.model('Sandwich', SandwichSchema);

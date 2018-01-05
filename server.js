@@ -12,7 +12,7 @@ app.use(bodyParser.json());
  * DATABASE *
  ************/
 
-// var db = require('./models');
+var db = require('./models');
 
 /**********
  * ROUTES *
@@ -38,27 +38,51 @@ app.get('/', function homepage(req, res) {
 app.get('/api', function api_index(req, res) {
   // TODO: Document all your api endpoints below
   res.json({
-    woops_i_has_forgot_to_document_all_my_endpoints: true, // CHANGE ME ;)
+    woops_i_has_forgot_to_document_all_my_endpoints: false, // CHANGE ME ;)
     message: "Here's the dirt",
-    documentation_url: "https://github.com/example-username/express_self_api/README.md", // CHANGE ME
-    base_url: "http://YOUR-APP-NAME.herokuapp.com", // CHANGE ME
+    documentation_url: "readme here", // CHANGE ME
+    base_url: "url here", // CHANGE ME
     endpoints: [
       {method: "GET", path: "/api", description: "Describes all available endpoints"},
       {method: "GET", path: "/api/profile", description: "Data about me"}, // CHANGE ME
-      {method: "POST", path: "/api/campsites", description: "E.g. Create a new campsite"} // CHANGE ME
+      {method: "POST", path: "/api/sandwiches", description: "E.g. Create a new sandwich, which is a thing I love"} // CHANGE ME
     ]
   })
 });
 app.get('/api/profile', function (req, res){
-  [{
+  res.json({
     name: 'JSON COX',
     github_link: "https://github.com/jasonbrettcox",
     github_profile_image: "https://avatars0.githubusercontent.com/u/33739192?s=460&v=4",
     current_city: "Mile High",
-    pets: [{name: "Betty", type: " Deceased Cat", breed: "Orange Tabby"}, {name: "Churro", type: "Dog", breed: "Pit Bull Terrier"}, {name: "Lord Frederick of Denverburg", type: "Dog", breed: "Dachshund"}]`
-  }]
-})
+    pets: [{name: "Betty", type: " Deceased Cat", breed: "Orange Tabby"}, {name: "Churro", type: "Dog", breed: "Pit Bull Terrier"}, {name: "Lord Frederick of Denverburg", type: "Future Dog", breed: "Dachshund"}]
+  });
+});
 
+// post route
+app.post('/api/sandwiches', function (req, res){
+  var newSandwich = new db.Sandwich({
+    description: req.body.description,
+    bread: req.body.bread,
+    protein: req.body.protein,
+    condiment: req.body.condiment,
+    length: req.body.length
+  });
+  newSandwich.save(function (err, sandwich){
+    if (err) {
+      return console.log("save error:" + err);
+    }
+    console.log('saved');
+    res.json(sandwich);
+  });
+});
+//update route
+app.put('/api/sandwiches/:id', function (req, res){
+  db.sandwiches.findOneAndUpdate({_id: req.params.id}, {$set: {description: req.body.description, bread: req.params.bread}}, {new: true}, function(err, sandwich){
+if (err) {return console.log("you suck", + err)}
+    res.json(sandwich);
+  });      
+});
 /**********
  * SERVER *
  **********/
